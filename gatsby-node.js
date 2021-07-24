@@ -65,28 +65,21 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
   if (queryAllMarkdownData.errors) {
     reporter.panicOnBuild(`Error while running query`);
     return;
-  }
-   // Import Post Template Component
-   const PostTemplateComponent = path.resolve(
-    __dirname,
-    './src/templates/post_template.js',
-  );
+  }  
 
   // Page Generating Function
-  const generatePostPage = ({
-    node: {
-      fields: { slug },
-    },
-  }) => {
+  const generatePostPage = ({ node }) => {
     const pageOptions = {
-      path: slug,
-      component: PostTemplateComponent,
-      context: { slug },
+      path: node.fields.slug,
+      component: path.resolve(__dirname, 'src/templates/post_template.js'),
+      context: {
+        slug: node.fields.slug
+      },
     };
 
     createPage(pageOptions);
   };
 
-  // Generate Post Page And Passing Slug Props for Query
+  // // Generate Post Page And Passing Slug Props for Query
   queryAllMarkdownData.data.allMarkdownRemark.edges.forEach(generatePostPage);
 };

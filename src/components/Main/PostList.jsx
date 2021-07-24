@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react';
+import React from 'react';
 import styled from '@emotion/styled';
 import PostItem from './PostItem';
 import useInfiniteScroll from './useInfiniteScroll';
@@ -17,7 +17,8 @@ const PostList = ({ selectedCategory, posts }) => {
   const { containerRef, postList } = useInfiniteScroll(selectedCategory, posts);
   return (
     <PostListWrapper ref={containerRef}>
-      {postList.map(
+    {/* <PostListWrapper> */}
+      {posts.map(
         ({
           node: {
             id,
