@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import Img from 'gatsby-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
 import PostHeadInfo from './PostHeadInfo';
 
 
@@ -9,12 +10,12 @@ const PostHead = function ({
   date,
   categories,
   thumbnail: {
-    childImageSharp: { fluid },
+    childImageSharp: { gatsbyImageData },
   },
 }) {
   return (
     <PostHeadWrapper>
-      <BackgroundImage fluid={fluid} alt="thumbnail" />
+      <BackgroundImage image={gatsbyImageData} alt="thumbnail" />
       <PostHeadInfo title={title} date={date} categories={categories} />
     </PostHeadWrapper>
   );
@@ -33,9 +34,9 @@ const PostHeadWrapper = styled.div`
 `;
 
 const BackgroundImage = styled((props) => (
-  <Img {...props} style={{ position: 'absolute' }} />
+  <GatsbyImage {...props} style={{ position: 'absolute' }} />
 ))`
-  z-index: -1;
+  /* z-index: -1; */
   width: 100%;
   height: 400px;
   object-fit: cover;

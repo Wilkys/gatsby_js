@@ -34,9 +34,7 @@ export const queryMarkdownDataBySlug = graphql`
             categories
             thumbnail {
               childImageSharp {
-                fluid(fit: INSIDE, quality: 100) {
-                  ...GatsbyImageSharpFluid_withWebp
-                }
+                gatsbyImageData
               }
             }
           }

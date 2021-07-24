@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { Link } from 'gatsby';
-import Img from 'gatsby-image';
+import { GatsbyImage } from 'gatsby-plugin-image';
+
 
 const PostItem = ({
   title,
@@ -9,13 +10,13 @@ const PostItem = ({
   categories,
   summary,
   thumbnail: {
-    childImageSharp: { fluid },
+    childImageSharp: { gatsbyImageData },
   },
   link
 }) => {
   return (
     <PostItemWrapper to={link}>
-      <ThumbnailImage fluid={fluid} alt="Post Item Image" />
+      <ThumbnailImage image={gatsbyImageData} alt="Post Item Image" />
       <PostItemContent>
         <Title>{title}</Title>
         <Date>{date}</Date>
@@ -40,10 +41,10 @@ const PostItemWrapper = styled(Link)`
   cursor: pointer;
 
   &:hover {
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 10px rgba(99, 47, 47, 0.3);
   }
 `;
-const ThumbnailImage = styled(Img)`
+const ThumbnailImage = styled(GatsbyImage)`
   width: 100%;
   height: 200px;
   border-radius: 10px 10px 0 0;

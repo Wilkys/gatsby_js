@@ -69,7 +69,7 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
    // Import Post Template Component
    const PostTemplateComponent = path.resolve(
     __dirname,
-    'src/templates/post_template.js',
+    './src/templates/post_template.js',
   );
 
   // Page Generating Function

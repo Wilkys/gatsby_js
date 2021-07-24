@@ -12,7 +12,7 @@ const IndexPage = function ({
   data: {
     allMarkdownRemark: { edges },
     file: {
-      childImageSharp: { fluid },
+      childImageSharp: { gatsbyImageData },
     },
   },
 }) {
@@ -47,7 +47,7 @@ const IndexPage = function ({
   
   return (
     <Template>
-      <Introduction profileImage={fluid} />
+      <Introduction profileImage={gatsbyImageData} />
       <CategoryList
         selectedCategory={selectedCategory}
         categoryList={categoryList}
@@ -81,14 +81,7 @@ export const queryPostList = graphql`
             categories
             thumbnail {
               childImageSharp {
-                fluid(
-                  maxWidth: 768
-                  maxHeight: 200
-                  fit: INSIDE
-                  quality: 100
-                ) {
-                  ...GatsbyImageSharpFluid_withWebp
-                }
+                gatsbyImageData
               }      
             }
           }
@@ -97,9 +90,7 @@ export const queryPostList = graphql`
     }
     file(name: {eq: "profile-image" }) {
       childImageSharp {
-        fluid(maxWidth: 120, maxHeight: 120, fit: INSIDE, quality: 100){
-          ...GatsbyImageSharpFluid_withWebp
-        }
+        gatsbyImageData
       }
     }
   }
