@@ -14,11 +14,11 @@ import useInfiniteScroll from './useInfiniteScroll';
 // };
 
 const PostList = ({ selectedCategory, posts }) => {
-  const { containerRef, postList } = useInfiniteScroll(selectedCategory, posts);
+  const { containerRef, postList} = useInfiniteScroll(selectedCategory, posts);
   return (
     <PostListWrapper ref={containerRef}>
     {/* <PostListWrapper> */}
-      {posts.map(
+      {postList.map(
         ({
           node: {
             id,
